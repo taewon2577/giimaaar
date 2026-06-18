@@ -12,7 +12,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: { blue: "#0066cc", cyan: "#00d4ff", navy: "#003366" },
+                        brand: { blue: "#1e3a8a", blueLight: "#3b82f6", yellow: "#eab308", navy: "#0f172a" },
                         slate: { 900: "#111827", 600: "#4b5563" }
                     },
                     fontFamily: { sans: ['Inter', 'Noto Sans KR', 'sans-serif'] },
@@ -22,285 +22,257 @@
     </script>
     <style type="text/tailwindcss">
         @layer base {
-            body { @apply bg-white text-slate-900 font-sans antialiased; margin: 0; }
+            body { @apply bg-white text-slate-800 font-sans antialiased; margin: 0; }
         }
         @layer components {
-            .glass-card { @apply bg-white border border-slate-200 rounded-2xl shadow-sm transition-all overflow-hidden p-8; }
-            .btn-primary { @apply px-8 py-2.5 bg-brand-blue text-white font-bold rounded shadow hover:bg-blue-700 transition flex items-center justify-center; }
-            .nav-link { @apply text-sm font-semibold text-slate-500 hover:text-brand-blue transition-colors relative; }
+            .glass-card { @apply bg-white border border-slate-100 rounded-[32px] shadow-sm transition-all overflow-hidden p-10 hover:shadow-2xl hover:-translate-y-2 duration-500; }
+            .btn-primary { @apply px-10 py-4 bg-brand-blue text-white font-black rounded-full shadow-xl hover:bg-brand-navy transition-all flex items-center justify-center transform active:scale-95; }
+            .nav-link { @apply text-[11px] font-black text-slate-400 hover:text-brand-blue transition-all relative uppercase tracking-[0.2em]; }
             .nav-active { @apply text-brand-blue; }
             .nav-active::after { content: ''; @apply absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue; }
-            .tab-btn { @apply flex-1 py-4 text-center border font-bold transition-all bg-slate-50 text-slate-400 border-slate-200; }
-            .tab-active { @apply bg-brand-navy text-white border-brand-navy; }
-            .info-table { @apply w-full text-xs md:text-sm border-t-2 border-slate-900; }
-            .info-table th { @apply bg-slate-50 p-3 border-b border-slate-200 font-bold text-center; }
-            .info-table td { @apply p-3 border-b border-slate-100 text-center; }
-        }
-        .page-banner {
-            background: linear-gradient(135deg, #001a33 0%, #0066cc 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .circuit-bg {
-            position: absolute; inset: 0; opacity: 0.1;
-            background-image: radial-gradient(#fff 1px, transparent 1px);
-            background-size: 20px 20px;
+            .tab-btn { @apply flex-1 py-5 text-center border font-black transition-all bg-slate-50 text-slate-300 border-slate-100 text-[11px] tracking-widest hover:bg-white hover:text-slate-600; }
+            .tab-active { @apply bg-white text-brand-blue border-b-4 border-b-brand-blue shadow-sm; }
+            .info-table { @apply w-full text-sm border-t-4 border-brand-navy; }
+            .info-table th { @apply bg-slate-50 p-5 border-b border-slate-200 font-bold text-slate-500 text-center; }
+            .info-table td { @apply p-6 border-b border-slate-100 text-center font-medium text-slate-700; }
+            .logo-box { @apply p-8 border border-slate-100 rounded-[24px] flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-xl transition-all h-[130px] grayscale hover:grayscale-0 overflow-hidden; }
         }
     </style>
 </head>
-<body>
+<body class="selection:bg-brand-blue selection:text-white">
     <div id="layout" class="flex flex-col min-h-screen">
         <!-- HEADER -->
-        <header id="header" class="fixed top-0 w-full z-50 bg-white border-b border-slate-100">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                <a href="#/" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-brand-blue rounded flex items-center justify-center text-white font-black">Y</div>
-                    <span class="text-xl font-black text-slate-800 tracking-tight italic uppercase">DMU <span class="text-brand-blue">Bootcamp</span></span>
+        <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+                <a href="#/" class="flex items-center gap-4 group">
+                    <div class="w-12 h-12 bg-brand-blue rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-2xl group-hover:rotate-[15deg] transition duration-500">Y</div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-black text-slate-900 leading-none tracking-tighter">동양미래대학교</span>
+                        <span class="text-[10px] font-black text-brand-blue tracking-[0.3em] uppercase mt-1">Semiconductor Bootcamp</span>
+                    </div>
                 </a>
-                <nav class="hidden md:flex items-center space-x-10">
+                <nav class="hidden lg:flex items-center space-x-12">
                     <a href="#/about" class="nav-link">사업단 소개</a>
-                    <a href="#/courses" class="nav-link">교육과정안내/신청</a>
-                    <a href="#/schedule" class="nav-link">교육시설장비</a>
+                    <a href="#/courses" class="nav-link">교육과정</a>
+                    <a href="#/facilities" class="nav-link">교육 인프라</a>
                     <a href="#/community" class="nav-link">커뮤니티</a>
-                    <a href="#/careers" class="nav-link">채용정보</a>
-                    <a href="#" class="btn-primary rounded-full px-6">신청하기</a>
+                    <a href="#/careers" class="nav-link">취업지원</a>
+                    <a href="#" class="btn-primary">수강신청</a>
                 </nav>
             </div>
         </header>
 
-        <!-- MAIN AREA -->
-        <main id="app" class="flex-grow pt-[72px]">
-        </main>
+        <main id="app" class="flex-grow pt-[88px]"></main>
 
-        <!-- FOOTER -->
-        <footer class="bg-slate-50 border-t border-slate-200 py-12 px-6">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8 items-center md:items-start text-center md:text-left">
-                <div><h3 class="font-black text-brand-blue mb-4 uppercase italic">Dongyang Mirae University</h3><p class="text-xs text-slate-400 leading-relaxed font-bold">08221 서울시 구로구 경인로 445 동양미래대학교 4호관 2층 203호<br/>TEL : 02-2610-1700 | FAX : 02-2688-5494</p></div>
-                <div class="text-[10px] text-slate-300 font-black tracking-widest uppercase">© 2026 DONGYANG MIRAE UNIVERSITY.</div>
+        <footer class="bg-brand-navy text-slate-500 py-24 px-8 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-16">
+                <div class="space-y-8">
+                    <h3 class="font-black text-white text-3xl italic tracking-tighter uppercase">Dongyang Mirae Semiconductor</h3>
+                    <p class="text-sm font-medium leading-relaxed opacity-40 italic">08221 서울시 구로구 경인로 445 동양미래대학교 4호관 2층 203호<br/>TEL : 02-2610-1700 | FAX : 02-2688-5494</p>
+                </div>
+                <div class="flex flex-col items-center md:items-end justify-end space-y-6">
+                    <div class="flex gap-8 opacity-40 font-black text-xs uppercase tracking-widest hover:text-white transition cursor-pointer">개인정보처리방침</div>
+                    <p class="text-[10px] font-black tracking-[0.5em] opacity-20 uppercase italic">© 2026 Dongyang Mirae Univ. All Rights Reserved.</p>
+                </div>
             </div>
         </footer>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- APP ENGINE -->
     <script>
+        const handleImgError = (el, name) => {
+            el.style.display = 'none';
+            const parent = el.parentElement;
+            if (parent && parent.classList.contains('logo-box')) {
+                const span = document.createElement('span');
+                span.className = 'font-black text-brand-navy text-[11px] uppercase tracking-tighter text-center leading-tight';
+                span.innerText = name || '협력사';
+                parent.appendChild(span);
+            } else {
+                const div = document.createElement('div');
+                div.className = 'w-full h-full bg-slate-50 flex items-center justify-center font-black text-slate-200 italic uppercase text-xs p-10 text-center';
+                div.innerText = '이미지 준비 중';
+                parent.appendChild(div);
+            }
+        };
+
         window.state = {
-            aboutTab: 'greeting', commTab: 'notice', courseTab: 'degree', facilityTab: 'env',
+            aboutTab: 'intro', commTab: 'notice', courseTab: 'degree', facilityTab: 'env',
             posts: {
-                notice: [ { id: 3, type: 'NOTICE', title: '[램리서치코리아] 2026 하반기 FSE 공채 및 On-site 이벤트 안내', author: '관리자', date: '2026-06-16', views: 42, file: true }, { id: 2, type: 'NOTICE', title: '몰입형 조기 마감 안내', author: '관리자', date: '2026-06-02', views: 156 }, { id: 1, type: 'NOTICE', title: '2026년 하계 몰입형 교육 신청 안내', author: '관리자', date: '2026-05-19', views: 1024, file: true } ],
-                data: [ { id:3, type:'DATA', title:'반도체 공정 교육 교안 (PDF)', author:'관리자', date:'2026-06-10', views:88, file:true }],
-                review: [ { id: 3, type: 'REVIEW', title: '[SK하이닉스] 비전공자 도전기', author: '김*현', date: '2026-06-14', views: 332 } ],
-                faq: [ { id: 1, type: 'FAQ', title: '[비용] 교육비는 전액 무료인가요?', author:'관리자', date:'2026-05-08', views:1200 } ],
-                gallery: [ { id:1, title:'3호관 클린룸 실습 현장', img:'./assets/gallery1.png', date:'2026-05-10' } ]
-            },
-            isWriting: false
+                notice: [
+                    { id: 3, title: '[중요] 2026년도 하반기 반도체 부트캠프 수강생 모집 안내', date: '2026-06-18', views: 452, author: '사업단' },
+                    { id: 2, title: '교육비 전액 국고지원 및 장학금 지급 기준 안내', date: '2026-06-10', views: 820, author: '관리자' },
+                    { id: 1, title: '부트캠프 수료증 발급 시스템 이용 안내', date: '2026-05-20', views: 1240, author: '관리자' }
+                ],
+                data: [
+                    { id: 3, title: '반도체 공정 기초 이론 요약집 (v2.0)', date: '2026-06-15', views: 120, author: '교수진' },
+                    { id: 2, title: 'PLC 제어 실습 가이드북 PDF', date: '2026-06-05', views: 88, author: '기술팀' },
+                    { id: 1, title: '취업역량 강화를 위한 자소서 양식 다운로드', date: '2026-05-12', views: 340, author: '지원팀' }
+                ],
+                gallery: [
+                    { title: '반도체 클린룸 방진복 체험 실습', img: './assets/gallery1.png' },
+                    { title: '제2회 기업 연계 프로젝트 수료식', img: './assets/gallery2.png' },
+                    { title: 'STATS ChipPAC 기업 견학 현장', img: './assets/gallery3.png' }
+                ],
+                review: [
+                    { id: 3, title: '비전공자에서 반도체 엔지니어로 취업하기까지', date: '2026-06-16', views: 980, author: '김*수' },
+                    { id: 2, title: '부트캠프 실무 교육이 실제 현장에서 도움된 점', date: '2026-06-02', views: 420, author: '박*민' },
+                    { id: 1, title: '램리서치코리아 최종 합격 후기 공유드립니다', date: '2026-05-15', views: 1560, author: '최*호' }
+                ],
+                faq: [
+                    { id: 3, title: '교육 신청 자격 및 선발 기준은 무엇인가요?', date: '2026-06-18', views: 120, author: '사업단' },
+                    { id: 2, title: '기존 전공과 상관없이 수강 가능한가요?', date: '2026-06-12', views: 450, author: '사업단' },
+                    { id: 1, title: '교육 기간 중 아르바이트 병행이 가능한가요?', date: '2026-05-30', views: 320, author: '사업단' }
+                ]
+            }
         };
 
-        const routes = {
-            '/': renderHome, '/about': renderAbout, '/courses': renderCourses, '/schedule': renderFacility, '/community': renderCommunity, '/careers': () => renderBannerPage('채용정보', '글로벌 초일류 기업과의 채용 연계를 지원합니다.')
-        };
+        const setTab = (k, v) => { window.state[k] = v; router(); };
 
-        function router() {
-            const path = window.location.hash.slice(1) || '/';
-            const app = document.getElementById('app');
-            app.innerHTML = (routes[path] || renderHome)();
-            window.scrollTo(0, 0);
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.toggle('nav-active', link.getAttribute('href').slice(1) === path));
-        }
-        window.addEventListener('hashchange', router);
-        window.addEventListener('load', router);
+        const renderBanner = (title, sub) => `
+            <section class="relative h-[280px] bg-brand-blue overflow-hidden flex items-center justify-center text-center">
+                <div class="absolute inset-0 bg-[radial-gradient(#ffffff1a_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-20"></div>
+                <div class="relative z-10 px-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <h1 class="text-5xl md:text-6xl font-black text-white italic tracking-tighter mb-4 uppercase">${title}</h1>
+                    <p class="text-blue-100 text-lg font-medium opacity-80 italic tracking-widest">${sub}</p>
+                </div>
+            </section>
+        `;
 
-        const setTab = (key, id) => { window.state[key] = id; if(key === 'commTab') window.state.isWriting = false; router(); };
-        const toggleWrite = (val) => { window.state.isWriting = val; router(); };
-
-        function renderBanner(title, subtitle) {
-            return `<section class="page-banner py-20 text-center text-white"><div class="circuit-bg"></div><div class="relative z-10 px-6"><div class="text-[10px] font-black opacity-30 mb-2 tracking-[0.45em] uppercase">Semiconductor Bootcamp</div><h1 class="text-4xl md:text-5xl font-black mb-4 italic tracking-tighter">${title}</h1><p class="text-slate-100 font-medium text-sm md:text-base">${subtitle}</p></div></section>`;
-        }
-
-        function renderHome() {
-            return `<div class="animate-in fade-in duration-1000"><section class="bg-white min-h-[75vh] flex flex-col justify-center items-center text-center px-6 relative"><div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#0066cc_1px,transparent_1px)] [background-size:24px_24px]"></div><div class="relative z-10"><h2 class="text-6xl md:text-8xl font-black mb-8 italic uppercase tracking-tighter leading-none italic uppercase">Future in <span class="text-brand-blue italic">Chips</span></h2><p class="text-slate-400 text-xl font-bold mb-12 italic uppercase tracking-widest">Global Lab. Local Impact. Tomorrow's Power.</p><div class="flex gap-4 justify-center"><a href="#/courses" class="btn-primary rounded-full px-12 py-4">Explore Curriculum</a><a href="#/about" class="px-12 py-4 border border-slate-200 rounded-full font-black text-slate-400 hover:bg-slate-100 transition">About Us</a></div></div></section></div>`;
-        }
-
-        // --- ABOUT ---
         function renderAbout() {
-            const tabs = [{ id: 'greeting', name: '인사말' }, { id: 'intro', name: '사업소개' }, { id: 'org', name: '조직도' }, { id: 'agencies', name: '협력기관' }, { id: 'depts', name: '참여학과/교원' }, { id: 'map', name: '오시는 길' }];
-            let tabContent = '';
-            if (window.state.aboutTab === 'greeting') {
-                tabContent = `<div class="max-w-4xl mx-auto py-20 animate-in fade-in"><div class="glass-card"><div class="h-80"><img src="./assets/greeting_hero.png" class="w-full h-full object-cover"></div><div class="pt-10 space-y-6 text-slate-500 font-medium leading-relaxed"><p class="text-2xl font-black text-slate-900 leading-tight">"기술의 경계를 넘어서는 전문 인재, <br>반도체 부트캠프가 당신과 함께합니다."</p><p>혁신적인 장비 교육과 탄탄한 이론 교육을 통해 실무 능력을 갖춘 최정예 엔지니어를 양성하겠습니다.</p><div class="text-right border-t pt-8 font-black text-2xl text-slate-900">사업단장 오*석</div></div></div></div>`;
-            } else { tabContent = `<div class="py-40 text-center text-slate-200 font-black italic uppercase tracking-widest">${window.state.aboutTab} Section Under Build</div>`; }
-            return `<div>${renderBanner('사업단 소개', '반도체 인재 양성의 요람, 동양미래대학교입니다.')}<div class="max-w-7xl mx-auto px-6"><div class="flex border-b border-slate-200 overflow-x-auto">${tabs.map(t => `<button onclick="setTab('aboutTab', '${t.id}')" class="tab-btn min-w-[120px] ${window.state.aboutTab === t.id ? 'tab-active' : ''}">${t.name}</button>`).join('')}</div><div>${tabContent}</div></div></div>`;
-        }
-
-        // --- COURSES (Full Integration) ---
-        function renderCourses() {
-            const tabs = [{ id: 'degree', name: '마이크로디그리 과정' }, { id: 'immersive', name: '몰입형 교육과정' }, { id: 'other', name: '기타 교육과정' }];
+            const tabs = [ { id: 'greeting', name: '인사말' }, { id: 'intro', name: '사업소개' }, { id: 'org', name: '조직도' }, { id: 'agencies', name: '협력기관' }, { id: 'depts', name: '참여학과' }, { id: 'map', name: '오시는 길' } ];
+            const t = window.state.aboutTab;
             let content = '';
 
-            if (window.state.courseTab === 'degree') {
+            if (t === 'intro') {
                 content = `
-                    <div class="animate-in fade-in space-y-20">
-                        <div class="text-slate-600 space-y-2">
-                            <p>• 반도체 관련 정규 교과목(교과형)과 단기 집중교육교과목(몰입형)의 혼합형 교육과정으로 구성</p>
-                            <p>• 반도체 실무 테크니션 양성을 목표로 초급, 중급, 고급 총 10개 과정 운영</p>
+                    <div class="max-w-6xl mx-auto py-24 space-y-32 animate-in fade-in">
+                        <div>
+                            <h3 class="text-4xl font-black mb-16 italic border-l-[16px] border-brand-blue pl-8">사업 개요</h3>
+                            <table class="info-table">
+                                <tr><th class="w-1/3">사업명</th><td class="text-left font-black text-lg">첨단산업인재양성 부트캠프사업 (반도체분야)</td></tr>
+                                <tr><th>사업목적</th><td class="text-left py-10 font-bold leading-relaxed text-slate-500">기업 수요에 맞춘 단기 집중 커리큘럼을 통해 <br>현장 실무 역량을 갖춘 반도체 전문 인력 양성</td></tr>
+                                <tr><th>사업기간</th><td class="text-left">2023. 03. 01 ~ 2028. 02. 29 (총 5년)</td></tr>
+                                <tr><th>주관부처</th><td class="text-left font-bold text-brand-blue">교육부 | 한국산업기술진흥원 (KIAT)</td></tr>
+                            </table>
                         </div>
-                        
-                        <!-- Diagram -->
-                        <div class="bg-blue-50/50 p-12 rounded-[60px] border border-blue-100 text-center relative overflow-hidden">
-                            <h3 class="text-xl font-black text-brand-blue mb-12 py-2 px-8 bg-white inline-block rounded-full shadow-sm">마이크로디그리와 몰입형 교육과정 구성</h3>
-                            <div class="flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
-                                <div class="flex-1 space-y-4">
-                                    ${['반도체 설비 제어 교과','반도체 설비 유지보수 교과','정규 학기 교과 편성'].map(v => `<div class="p-4 bg-white border-2 border-brand-blue rounded-xl shadow-sm font-bold text-brand-blue">${v}</div>`).join('')}
+                        <div class="text-center">
+                             <h3 class="text-4xl font-black mb-20 italic text-left border-l-[16px] border-brand-blue pl-8">비전 및 목표</h3>
+                             <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
+                                <div class="flex-1 min-h-[380px] bg-brand-blue text-white p-16 rounded-[60px] flex flex-col justify-center shadow-2xl relative overflow-hidden group">
+                                    <span class="text-4xl font-black italic mb-6 block opacity-40 uppercase tracking-widest">비전</span>
+                                    <p class="text-4xl font-black uppercase tracking-tighter italic italic">최고의 반도체<br>인재 양성 허브</p>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-32 h-32 rounded-full bg-blue-400 flex items-center justify-center text-white font-black text-xl">교과형</div>
-                                    <div class="w-48 h-48 rounded-full bg-brand-navy flex flex-col items-center justify-center text-white shadow-2xl">
-                                        <div class="font-black text-lg">마이크로디그리</div>
-                                        <div class="text-[10px] opacity-70">교과형 + 몰입형</div>
-                                    </div>
-                                    <div class="w-32 h-32 rounded-full bg-blue-300 flex items-center justify-center text-white font-black text-xl">몰입형</div>
+                                <div class="w-64 h-64 min-w-[256px] bg-white flex items-center justify-center z-10 -mx-10 sm:rounded-full border-[12px] border-brand-blue font-black text-brand-blue text-center text-3xl shadow-3xl">사업단</div>
+                                <div class="flex-1 min-h-[380px] bg-brand-yellow text-slate-900 p-16 rounded-[60px] flex flex-col justify-center shadow-2xl relative overflow-hidden group">
+                                    <span class="text-4xl font-black italic mb-6 block opacity-20 uppercase tracking-widest">목표</span>
+                                    <p class="text-4xl font-black uppercase tracking-tighter italic italic">현장 결합형<br>실무 전문가 배출</p>
                                 </div>
-                                <div class="flex-1 space-y-4">
-                                    ${['단기 현장 실무 집중 교육','자격증 연계 특강','사업체 인사 참여'].map(v => `<div class="p-4 bg-white border-2 border-brand-blue rounded-xl shadow-sm font-bold text-brand-blue">${v}</div>`).join('')}
-                                </div>
-                            </div>
+                             </div>
                         </div>
-
-                        <!-- Micro Content List -->
-                        <div class="space-y-16">
-                            <!-- Beginner -->
-                            <div class="space-y-8">
-                                <h4 class="text-2xl font-black border-l-4 border-brand-blue pl-4">초급 과정</h4>
-                                <div class="space-y-6">
-                                    <div class="glass-card">
-                                        <h5 class="text-xl font-bold mb-4">1. 반도체공정 및 설비기초</h5>
-                                        <p class="text-sm text-slate-500 mb-6">물리적 특성 이해 및 소자 학습, 공정 및 설비 이해</p>
-                                        <table class="info-table">
-                                            <thead><tr><th>수준</th><th>유형</th><th>교과목</th><th>학년/학기</th><th>시간</th><th>학점</th><th>이수기준</th></tr></thead>
-                                            <tbody><tr><td>초급</td><td>교과형</td><td>반도체기초</td><td>2/2</td><td>45</td><td>3</td><td>C학점 이상</td></tr></tbody>
-                                        </table>
-                                    </div>
-                                    <div class="glass-card">
-                                        <h5 class="text-xl font-bold mb-4">2. 반도체소자 및 공정기초</h5>
-                                        <p class="text-sm text-slate-500 mb-6">기초 소자(Diode, Transistor) 기반 동작 방식 및 제작 흐름 학습</p>
-                                        <table class="info-table">
-                                            <thead><tr><th>수준</th><th>유형</th><th>교과목</th><th>학년/학기</th><th>시간</th><th>학점</th><th>이수기준</th></tr></thead>
-                                            <tbody><tr><td>초급</td><td>교과형</td><td>반도체공학</td><td>1/2</td><td>30</td><td>2</td><td>C학점 이상</td></tr></tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Intermediate -->
-                            <div class="space-y-8">
-                                <h4 class="text-2xl font-black border-l-4 border-brand-blue pl-4">중급 과정 (총 6개 과정)</h4>
-                                <div class="grid grid-cols-1 gap-8">
-                                    <!-- 1. 자동화 -->
-                                    <div class="glass-card">
-                                        <h5 class="text-xl font-bold mb-4">1. 반도체설비자동화</h5>
-                                        <div class="overflow-x-auto"><table class="info-table">
-                                            <thead><tr><th>유형</th><th>교과목 구성</th><th>학년학기</th><th>시간</th><th>학점</th><th>이수기준</th></tr></thead>
-                                            <tbody>
-                                                <tr><td>교과형</td><td>캡스톤디자인</td><td>3/1</td><td>90</td><td>4</td><td rowspan="5" class="bg-slate-50 font-bold">4개 교과목 이상<br>10학점 이상</td></tr>
-                                                <tr><td>교과형</td><td>PLC제어 / PC기반제어</td><td>2/2</td><td>45</td><td>3</td></tr>
-                                                <tr><td>몰입형</td><td>협동로봇오퍼레이션 실무</td><td>2,3학</td><td>45</td><td>3</td></tr>
-                                            </tbody>
-                                        </table></div>
-                                    </div>
-                                    <!-- Add more for brevity or specific focus... -->
-                                    <div class="p-8 bg-slate-50 rounded-2xl text-center font-bold text-slate-300 italic border border-dashed border-slate-200">기타 중급 교육과정(설계, 유지보수, 운용 등) 상세 리스트는 카테고리별 독립 구현 중</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (window.state.courseTab === 'immersive') {
-                content = `
-                    <div class="animate-in fade-in space-y-12">
-                        <div class="text-slate-600 space-y-2">
-                            <p>• 현장 실무 집중 교육, 계절학기 활용 자격증 연계 단기 집중 교육</p>
-                            <p>• 계절학기를 활용해 초·중·고급 총 9개 교육과정 운영</p>
-                        </div>
-                        <div class="space-y-16">
-                            <h4 class="text-2xl font-black">교육 단계별 프로그램</h4>
-                            <div class="overflow-x-auto"><table class="info-table">
-                                <thead><tr><th>구분</th><th>교과목명</th><th>참여기업</th><th>시간</th><th>학점</th><th>이수기준</th><th>연계자격증</th><th>발급처</th></tr></thead>
-                                <tbody>
-                                    <tr class="bg-blue-50/30 font-bold"><td colspan="8">초급</td></tr>
-                                    <tr><td>초급</td><td>반도체장비유지보수 실무</td><td>(주)이엑스솔루션</td><td>30</td><td>2</td><td>F/P</td><td>반도체설비보전 기능사</td><td>한국산업인력공단</td></tr>
-                                    <tr class="bg-blue-50/30 font-bold"><td colspan="8">중급</td></tr>
-                                    <tr><td>중급</td><td>협동로봇오퍼레이션 실무</td><td>두산로보틱스(주)</td><td>45</td><td>3</td><td>F/P</td><td>두산로보틱스 수료증</td><td>두산로보틱스</td></tr>
-                                    <tr><td>중급</td><td>PLC 실무</td><td>한국미쓰비시전기</td><td>45</td><td>3</td><td>F/P</td><td>MFEC 레벨 1/2</td><td>교대</td></tr>
-                                    <tr><td>중급</td><td>도면이해 및 Solidworks 실무</td><td>(주)큐빅시스템즈</td><td>45</td><td>3</td><td>F/P</td><td>CSWA/CSWP</td><td>Dassault</td></tr>
-                                    <tr><td>중급</td><td>반도체레이아웃설계 실무</td><td>나인플러스IT(주)</td><td>45</td><td>3</td><td>F/P</td><td>반도체설계 산업기사</td><td>한국산업인력공단</td></tr>
-                                    <tr class="bg-blue-50/30 font-bold"><td colspan="8">고급</td></tr>
-                                    <tr><td>고급</td><td>반도체장비S/W 실무</td><td>(주)제이케이테크</td><td>45</td><td>3</td><td>F/P</td><td>자동화설비 산업기사</td><td>한국산업인력공단</td></tr>
-                                </tbody>
-                            </table></div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                content = `
-                    <div class="animate-in fade-in space-y-12">
-                        <p class="text-slate-600">• 부트캠프사업단에서 제공하는 비교과 교육과정으로 학점이 부여되지 않는 프로그램</p>
-                        <div class="grid grid-cols-1 gap-8">
-                            <div class="glass-card">
-                                <h4 class="text-xl font-bold mb-6 text-brand-blue">실무 역량 강화</h4>
-                                <table class="info-table text-left">
-                                    <thead><tr><th>프로그램</th><th>목적</th><th>내용</th></tr></thead>
-                                    <tbody>
-                                        <tr><td class="font-bold">현장견학</td><td>산업 현장 경험 제공</td><td>기업 방문 및 전문가 질의응답</td></tr>
-                                        <tr><td class="font-bold">현장실습</td><td>실무 업무 능력 배양</td><td>현업 프로젝트 참여 및 피드백</td></tr>
-                                        <tr><td class="font-bold">반도체산업전</td><td>기술 트렌드 탐구</td><td>최신 기술/장비 전시 관람</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="glass-card">
-                                <h4 class="text-xl font-bold mb-6 text-brand-navy">취업 지원</h4>
-                                <table class="info-table text-left">
-                                    <thead><tr><th>프로그램</th><th>내용</th></tr></thead>
-                                    <tbody>
-                                        <tr><td class="font-bold">취업컨설팅</td><td>모의면접, 이력서 작성, 스피치 코칭 지원</td></tr>
-                                        <tr><td class="font-bold">취업설명회</td><td>채용 담당자 초청 설명회 및 네트워킹</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                    </div>`;
+            } else if (t === 'agencies') {
+                const list = [{n:'동양미래대학교',l:'https://www.dongyang.ac.kr/sites/dmu/images/common/logo.png'},{n:'교육부',l:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Ministry_of_Education_%28South_Korea%29_logo.svg/512px-Ministry_of_Education_%28South_Korea%29_logo.svg.png'},{n:'KIAT',l:'https://www.kiat.or.kr/content/images/common/logo.png'},{n:'반도체산업협회',l:''},{n:'ETRI',l:'https://www.etri.re.kr/assets/images/common/logo.png'}];
+                content = `<div class="max-w-6xl mx-auto py-24 animate-in fade-in"><h3 class="text-3xl font-black mb-16 italic border-l-8 border-brand-blue pl-4">주요 협력 기관</h3><div class="grid grid-cols-2 md:grid-cols-5 gap-8">${list.map(a => `<div class="logo-box">${a.l ? `<img src="${a.l}" class="max-h-14 w-auto object-contain" onerror="handleImgError(this, '${a.n}')">` : `<span class="font-black text-brand-navy text-[11px] uppercase tracking-tighter">${a.n}</span>`}</div>`).join('')}</div></div>`;
+            } else if (t === 'greeting') {
+                content = `<div class="max-w-4xl mx-auto py-24 animate-in fade-in"><div class="glass-card shadow-2xl p-16"><div class="h-[600px] mb-12 rounded-[40px] overflow-hidden bg-slate-50 shadow-inner"><img src="./assets/greeting_hero.png" class="w-full h-full object-cover" onerror="handleImgError(this)"></div><h3 class="text-4xl font-black mb-10 italic tracking-tighter leading-tight">"반도체 강국의 꿈, 우리가 현장에서 실현합니다."</h3><p class="text-xl font-bold text-slate-400 leading-relaxed italic opacity-80 mb-16">최고의 교육 인프라를 통해 실무 역량을 갖춘 융합형 인재 양성에 기여하겠습니다.</p><div class="text-right border-t border-slate-100 pt-12"><span class="text-4xl font-black italic uppercase tracking-tighter">사업단장 오석중</span></div></div></div>`;
+            } else if (t === 'org') {
+                content = `<div class="max-w-6xl mx-auto py-24 animate-in slide-in-from-bottom-6 duration-700 flex flex-col items-center"><div class="w-[400px] p-12 bg-brand-blue text-white rounded-[40px] shadow-3xl font-black text-4xl text-center uppercase italic">사업단장</div><div class="w-2 h-16 bg-slate-100"></div><div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mt-4">${['사업 운영 I (교과)','사업 운영 II (비교과)','사업 행정 및 회계'].map(s => `<div class="glass-card bg-slate-50/50 flex flex-col items-center"><h4 class="text-2xl font-black text-brand-blue mb-4 italic">${s}</h4><p class="text-sm font-bold text-slate-400 text-center leading-relaxed">교육과정 고도화 및 학생 선발, 인프라 구축 매뉴얼 수립</p></div>`).join('')}</div></div>`;
+            } else if (t === 'depts') {
+                const d = [{n:'로봇소프트웨어공학과',l:'https://www.dongyang.ac.kr/dmu/4495/subview.do',r:'4호관 206호'},{n:'자동화공학과',l:'https://www.dongyang.ac.kr/dmu/4480/subview.do',r:'4호관 208호'},{n:'반도체전자공학과',l:'https://www.dongyang.ac.kr/dmu/4523/subview.do',r:'3호관 409호'}];
+                content = `<div class="max-w-7xl mx-auto py-24 grid grid-cols-1 md:grid-cols-3 gap-12">${d.map(obj => `<div class="glass-card text-center flex flex-col items-center group"><div class="w-20 h-20 bg-blue-50 text-brand-blue rounded-[32px] flex items-center justify-center mb-12 font-black text-4xl italic shadow-inner group-hover:bg-brand-blue group-hover:text-white transition duration-500 italic">#</div><h4 class="text-3xl font-black mb-4 italic tracking-tighter group-hover:text-brand-blue transition italic">${obj.n}</h4><p class="text-xs font-black text-slate-300 uppercase tracking-[0.4em] mb-12 italic">${obj.r}</p><div class="w-full"><a href="${obj.l}" target="_blank" class="btn-primary w-full py-6 text-xl uppercase italic font-black shadow-2xl">학과 홈페이지</a></div></div>`).join('')}</div>`;
+            } else if (t === 'map') {
+                content = `<div class="max-w-6xl mx-auto py-24 space-y-20 animate-in fade-in"><div class="glass-card p-0 h-[650px] border-slate-100 relative group"><div class="absolute inset-0 bg-slate-100 flex items-center justify-center font-black text-slate-100 text-[180px] opacity-10 uppercase tracking-widest italic select-none">CAMPUS</div></div><div class="glass-card bg-brand-navy p-20 flex flex-col lg:flex-row justify-between items-center shadow-3xl text-white border-none rounded-[60px]"><div class="space-y-6 text-center lg:text-left"><h4 class="text-5xl font-black italic tracking-tighter uppercase italic">오시는 길</h4><p class="text-2xl font-bold opacity-30">서울시 구로구 경인로 445 동양미래대학교 4호관 203호</p></div><div class="flex gap-6 mt-12 lg:mt-0"><button class="px-16 py-6 bg-[#03c75a] rounded-full font-black text-2xl active:scale-95 transition">네이버 지도</button><button class="px-16 py-6 bg-[#fae100] text-slate-900 rounded-full font-black text-2xl active:scale-95 transition">카카오 맵</button></div></div></div>`;
             }
 
-            return `
-                <div class="animate-in fade-in">
-                    ${renderBanner('교육과정안내', '마이크로디그리 정규 교과부터 현장 몰입 실무까지 탄탄한 커리큘럼.')}
-                    <div class="max-w-7xl mx-auto px-6 py-10">
-                        <div class="flex mb-16">${tabs.map(t => `<button onclick="setTab('courseTab', '${t.id}')" class="tab-btn ${window.state.courseTab === t.id ? 'tab-active' : ''}">${t.name}</button>`).join('')}</div>
-                        <div>${content}</div>
-                    </div>
-                </div>
-            `;
+            return `<div>${renderBanner('사업단 소개', '혁신 교육을 향한 국가적 사명')}<div class="max-w-7xl mx-auto px-6"><div class="flex bg-slate-50/50 backdrop-blur rounded-full overflow-hidden mt-12 mb-20 border border-slate-100 shadow-inner">${tabs.map(item => `<button onclick="setTab('aboutTab', '${item.id}')" class="tab-btn px-6 ${window.state.aboutTab === item.id ? 'tab-active' : ''}">${item.name}</button>`).join('')}</div><div id="about-content">${content}</div></div></div>`;
         }
 
-        // --- OTHER PAGES ---
+        function renderCourses() {
+            const tabs = [{ id: 'degree', name: '마이크로디그리 과정' }, { id: 'immersive', name: '몰입형 교육과정' }, { id: 'other', name: '기타 교육과정' }];
+            const t = window.state.courseTab;
+            let content = '';
+
+            if (t === 'degree') {
+                content = `
+                    <div class="space-y-32 animate-in slide-in-from-bottom-5 duration-700">
+                        <div class="bg-blue-100/10 p-24 rounded-[80px] border-2 border-dashed border-blue-200">
+                            <h3 class="text-3xl font-black text-brand-blue mb-24 italic uppercase tracking-widest text-center italic">교육 체계도</h3>
+                            <div class="flex flex-col lg:flex-row items-center justify-between gap-16 max-w-6xl mx-auto">
+                                <div class="flex-1 space-y-8">${['정규 교과 구성','반도체 설비 특화','현장 맞춤형 이론'].map(v=>`<div class="p-12 bg-white border-2 border-brand-blue rounded-[40px] font-black text-brand-blue text-center shadow-2xl hover:scale-105 transition-transform italic text-xl">${v}</div>`).join('')}</div>
+                                <div class="w-80 h-80 min-w-[320px] rounded-full bg-brand-navy flex flex-col items-center justify-center text-white italic font-black shadow-[0_0_80px_rgba(30,58,138,0.4)] relative z-10 p-16 text-center ring-[16px] ring-white">마이크로디그리<br><span class="text-xs opacity-50 block mt-4 font-sans tracking-[0.5em] uppercase">Core Course</span></div>
+                                <div class="flex-1 space-y-8">${['단기 몰입형 교육','실전 기술 프로젝트','자격증 마스터 트랙'].map(v=>`<div class="p-12 bg-white border-2 border-brand-blue rounded-[40px] font-black text-brand-blue text-center shadow-2xl hover:scale-105 transition-transform italic text-xl">${v}</div>`).join('')}</div>
+                            </div>
+                        </div>
+                        <div class="space-y-24">
+                            ${['초급','중급','고급'].map(level => `
+                                <div class="glass-card group p-20">
+                                    <h4 class="text-5xl font-black mb-16 border-l-[32px] border-brand-blue pl-10 italic group-hover:translate-x-4 transition-transform italic italic">${level} 과정</h4>
+                                    <table class="info-table w-full">
+                                        <thead><tr><th>과정 구분</th><th>상세 교과목</th><th>권장 학년</th><th>시간 / 학점</th><th>이수 기준</th></tr></thead>
+                                        <tbody>${level==='초급'? '<tr><td>정규 교과형</td><td>반도체 공정 및 설비기초 / 반도체 소자공정 기초</td><td>1, 2학년</td><td>45시간 / 3학점</td><td>C학점 이상</td></tr>':'<tr><td>융합 트랙</td><td>스마트 팩토리 연계 반도체 장비 제어 및 보전 실습</td><td>3, 4학년</td><td>60시간 / 4학점</td><td>최종 프로젝트 합격</td></tr>'}</tbody>
+                                    </table>
+                                </div>`).join('')}
+                        </div>
+                    </div>`;
+            } else if (t === 'immersive') {
+                content = `<div class="py-20 animate-in fade-in"><div class="glass-card p-20"><h4 class="text-5xl font-black mb-16 italic border-l-[24px] border-brand-blue pl-12 uppercase italic uppercase italic">계절제 몰입 교육 트랙</h4><table class="info-table w-full"><thead><tr><th>단계</th><th>교과목 명칭</th><th>협력 기업</th><th>학점/시간</th><th>연계 자격증</th></tr></thead><tbody><tr><td class="font-black text-blue-500">초급</td><td>반도체 장비 메인터넌스 기초</td><td>이엑스솔루션</td><td>2학점 / 30h</td><td>반도체설비보전기능사</td></tr><tr><td class="font-black text-brand-blue">고급</td><td>산업 로봇 기반 자동화 설비 제어</td><td>한국미쓰비시전기</td><td>3학점 / 45h</td><td>전기산업기사</td></tr></tbody></table></div></div>`;
+            } else {
+                content = `<div class="grid grid-cols-1 md:grid-cols-2 gap-20 py-24 animate-in slide-in-from-bottom-8 duration-700"><div class="glass-card p-20 bg-blue-50/20 border-blue-200"><h4 class="text-4xl font-black mb-12 italic uppercase">현장 실무 지원</h4><ul class="space-y-10 font-bold text-slate-500 text-2xl">${['반도체 현장 견학 지원','SEDEX 박람회 참관 지원','동/하계 장기 현장 실습'].map(v=>`<li>• ${v}</li>`).join('')}</ul></div><div class="glass-card p-20 bg-brand-yellow/5 border-yellow-100"><h4 class="text-4xl font-black mb-12 italic uppercase">취업 역량 강화</h4><ul class="space-y-10 font-bold text-slate-500 text-2xl">${['졸업생 실무 멘토링','1:1 면접 심화 클리닉','우수 협약기업 설명회'].map(v=>`<li>• ${v}</li>`).join('')}</ul></div></div>`;
+            }
+            return `<div>${renderBanner('교육과정', '현장 중심 실무형 테크니션 양성')}<div class="max-w-7xl mx-auto px-6 py-24"><div class="flex bg-slate-50 rounded-full overflow-hidden shadow-inner mb-24 border border-slate-100">${tabs.map(t => `<button onclick="setTab('courseTab', '${t.id}')" class="tab-btn px-8 ${window.state.courseTab === t.id ? 'tab-active' : ''}">${t.name}</button>`).join('')}</div><div id="course-content">${content}</div></div></div>`;
+        }
+
         function renderFacility() {
-            return `<div>${renderBanner('교육시설장비', '최첨단 교육 인프라를 소개합니다.')}<div class="max-w-7xl mx-auto px-6 py-24 animate-in fade-in"><div class="grid grid-cols-1 md:grid-cols-2 gap-10"><div class="glass-card group"><div class="h-80 overflow-hidden"><img src="./assets/cleanroom.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000"></div><div class="pt-8"><h4 class="text-2xl font-black mb-4">반도체클린룸</h4><p class="text-slate-500">3호관 109호 소재. 100클래스 환경의 정밀 공정 교육장.</p></div></div><div class="glass-card group"><div class="h-80 overflow-hidden"><img src="./assets/robot_center.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-1000"></div><div class="pt-8"><h4 class="text-2xl font-black mb-4">첨단반도체 로봇기술센터</h4><p class="text-slate-500">4호관 102호 소재. 협동로봇 및 자동화 제어 실습실.</p></div></div></div></div></div>`;
+            const tabs = [{id:'env', name:'시설 현황'}, {id:'labs', name:'주요 실습실'}];
+            let content = `<div class="grid grid-cols-1 md:grid-cols-2 gap-12 py-20">${[{t:'반도체 클린룸', r:'3호관 109호 실습실', i:'./assets/cleanroom.png'}, {t:'스마트 제조 제어 센터', r:'4호관 102호 실습실', i:'./assets/robot_center.png'}].map(f => `<div class="glass-card text-center p-0"><div class="h-96 overflow-hidden bg-slate-50 flex items-center justify-center"><img src="${f.i}" class="w-full h-full object-cover" onerror="handleImgError(this)"></div><div class="p-12"><h4 class="text-3xl font-black mb-4 italic italic">${f.t}</h4><p class="text-xs font-black text-slate-300 uppercase italic tracking-widest italic">${f.r}</p></div></div>`).join('')}</div>`;
+            return `<div>${renderBanner('교육 인프라', '최고의 설비와 최적의 환경')}<div class="max-w-7xl mx-auto px-6 py-20"><div class="flex border-b border-slate-100 mb-10">${tabs.map(t => `<button onclick="setTab('facilityTab', '${t.id}')" class="tab-btn ${window.state.facilityTab===t.id ? 'tab-active' : ''}">${t.name}</button>`).join('')}</div><div>${content}</div></div></div>`;
         }
 
         function renderCommunity() {
-            const tabs = [{ id:'notice', name:'공지사항' }, { id:'data', name:'자료실' }, { id:'gallery', name:'갤러리' }, { id:'review', name:'취업후기' }, { id:'faq', name:'FAQ' }];
+            const tabs = [{id:'notice', n:'공지사항'}, {id:'data', n:'자료실'}, {id:'gallery', n:'갤러리'}, {id:'review', n:'취업후기'}, {id:'faq', n:'현장 FAQ'}];
             let content = '';
-            if (window.state.isWriting) { content = `<div class="max-w-4xl mx-auto py-20"><div class="space-y-6"><input type="text" placeholder="Title" class="w-full p-4 border rounded-xl outline-none focus:ring-4 focus:ring-blue-50"><textarea class="w-full p-4 border rounded-xl min-h-[300px] outline-none"></textarea><div class="flex justify-end gap-2"><button onclick="toggleWrite(false)" class="px-6 py-2 bg-slate-100 rounded font-bold">Cancel</button><button onclick="alert('Done')" class="px-8 py-2 bg-brand-blue text-white rounded font-bold">Post</button></div></div></div>`; }
-            else if (window.state.commTab === 'gallery') { content = `<div class="max-w-6xl mx-auto py-20 grid grid-cols-1 md:grid-cols-3 gap-8">${window.state.posts.gallery.map(g => `<div class="glass-card p-0 group"><div class="h-60 overflow-hidden"><img src="${g.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000"></div><div class="p-6"><h4 class="font-bold truncate">${g.title}</h4></div></div>`).join('')}</div>`; }
-            else { 
-                const current = window.state.posts[window.state.commTab] || [];
-                content = `<div class="max-w-6xl mx-auto py-20"><table class="info-table"><thead><tr><th>No</th><th>Title</th><th>Views</th><th>Date</th></tr></thead><tbody>${current.map(p => `<tr><td>${p.id}</td><td class="text-left font-bold px-6">${p.title}</td><td>${p.views}</td><td>${p.date}</td></tr>`).join('')}</tbody></table><div class="mt-8 flex justify-end"><button onclick="toggleWrite(true)" class="btn-primary rounded-full">Write</button></div></div>`;
+            const t = window.state.commTab;
+
+            if (t === 'gallery') {
+                content = `<div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-20 animate-in fade-in">${window.state.posts.gallery.map(g => `<div class="glass-card p-0 shadow-lg group"><div class="h-64 overflow-hidden bg-slate-50 flex items-center justify-center"><img src="${g.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="handleImgError(this)"></div><div class="p-8"><h4 class="text-xl font-black italic tracking-tighter italic">${g.title}</h4></div></div>`).join('')}</div>`;
+            } else {
+                const list = window.state.posts[t] || [];
+                content = `<div class="py-20 animate-in fade-in">
+                    <table class="info-table border-t-4 border-brand-navy">
+                        <thead><tr><th>번호</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th></tr></thead>
+                        <tbody>${list.length > 0 ? list.map(p => `<tr><td>${p.id}</td><td class="text-left font-black text-slate-900 group cursor-pointer hover:text-brand-blue py-8 px-12 transition"> ${p.title} </td><td>${p.author||'관리자'}</td><td>${p.views}</td><td>${p.date}</td></tr>`).join('') : `<tr><td colspan="5" class="py-40 text-slate-200 font-black italic tracking-widest uppercase">작성된 게시글이 없습니다.</td></tr>`}</tbody>
+                    </table>
+                    <div class="mt-12 flex justify-end"><button class="btn-primary rounded-full px-16 shadow-2xl">글쓰기</button></div>
+                </div>`;
             }
-            return `<div>${renderBanner('커뮤니티', '교육생들과 함께 나누는 공간.')}<div class="max-w-7xl mx-auto px-6"><div class="flex border-b">${tabs.map(t => `<button onclick="setTab('commTab', '${t.id}')" class="tab-btn ${window.state.commTab === t.id ? 'tab-active' : ''}">${t.name}</button>`).join('')}</div><div>${content}</div></div></div>`;
+            return `<div>${renderBanner('커뮤니티', '소통하고 성장하는 공간')}<div class="max-w-7xl mx-auto px-6 py-20"><div class="flex bg-slate-50 border border-slate-100 rounded-full overflow-hidden mb-10">${tabs.map(tab => `<button onclick="setTab('commTab', '${tab.id}')" class="tab-btn px-6 ${window.state.commTab === tab.id ? 'tab-active' : ''}">${tab.n}</button>`).join('')}</div><div>${content}</div></div></div>`;
         }
 
-        function renderBannerPage(title, sub) { return `<div>${renderBanner(title, sub)}<div class="py-32 text-center text-slate-200 font-black italic">Content Coming Soon</div></div>`; }
+        const router = () => {
+            const h = window.location.hash.slice(1) || '/';
+            const app = document.getElementById('app');
+            const pageMap = {
+                '/': () => `<div class="animate-in fade-in h-[85vh] flex flex-col justify-center items-center text-center px-6"><h2 class="text-9xl font-black italic tracking-tighter mb-8 leading-none">THE <span class="text-brand-blue">SILICON</span> FRONTIER</h2><p class="text-slate-400 font-black tracking-[0.6em] uppercase text-xl mb-20 italic opacity-60">Dongyang Mirae Semiconductor Innovation</p><div class="flex flex-col md:flex-row gap-8"><a href="#/courses" class="btn-primary px-20 py-7 text-2xl">교육과정 확인</a><a href="#/about" class="px-20 py-7 border-2 border-slate-200 rounded-full font-black text-slate-400 hover:bg-slate-50 transition">사업단 비전</a></div></div>`,
+                '/about': renderAbout,
+                '/courses': renderCourses,
+                '/facilities': renderFacility,
+                '/community': renderCommunity,
+                '/careers': () => `<div>${renderBanner('취업지원', '미래를 향한 확실한 경로')}</div>`
+            };
+            
+            const renderFn = pageMap[h.split('?')[0]] || pageMap['/'];
+            app.innerHTML = renderFn();
 
-        // --- INIT ---
-        window.onload = router;
+            document.querySelectorAll('.nav-link').forEach(l => {
+                const path = l.getAttribute('href').slice(1);
+                l.classList.toggle('nav-active', h.startsWith(path) && path !== '');
+                if (h === '/' && path === '') l.classList.add('nav-active');
+            });
+            window.scrollTo(0,0);
+        };
+
+        window.addEventListener('hashchange', router); window.addEventListener('load', router);
     </script>
 </body>
 </html>

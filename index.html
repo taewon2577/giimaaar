@@ -26,27 +26,28 @@
         @tailwind utilities;
 
         @layer base {
+            /* 전체 글씨 크기를 키워 가독성 향상 (기본 16px -> 18px) */
+            html { font-size: 112.5%; }
             body { @apply bg-white text-slate-800 font-sans antialiased; margin: 0; }
         }
         @layer components {
             .glass-card { @apply bg-white border border-slate-100 rounded-[32px] shadow-sm transition-all overflow-hidden p-8 hover:shadow-2xl hover:-translate-y-2 duration-500; }
-            .btn-primary { @apply px-10 py-4 bg-brand-blue text-white font-black rounded-full shadow-xl hover:bg-brand-navy transition-all flex items-center justify-center transform active:scale-95; }
-            .nav-link { @apply text-[11px] font-black text-slate-400 hover:text-brand-blue transition-all relative uppercase tracking-[0.2em]; }
+            .btn-primary { @apply px-10 py-4 bg-brand-blue text-white font-black rounded-full shadow-xl hover:bg-brand-navy transition-all flex items-center justify-center transform active:scale-95 text-base; }
+            .nav-link { @apply text-[14px] font-black text-slate-500 hover:text-brand-blue transition-all relative uppercase tracking-[0.15em]; }
             .nav-active { @apply text-brand-blue; }
             .nav-active::after { content: ''; @apply absolute -bottom-1 left-0 w-full h-0.5 bg-brand-blue; }
-            .tab-btn { @apply flex-1 py-5 text-center border font-black transition-all bg-slate-50 text-slate-300 border-slate-100 text-[11px] tracking-widest hover:bg-white hover:text-slate-600; }
+            .tab-btn { @apply flex-1 py-5 text-center border font-black transition-all bg-slate-50 text-slate-400 border-slate-100 text-[14px] tracking-wide hover:bg-white hover:text-slate-700; }
             .tab-active { @apply bg-white text-brand-blue border-b-4 border-b-brand-blue shadow-sm font-black; }
-            .info-table { @apply w-full text-xs md:text-sm border-t-4 border-brand-navy border-collapse; }
-            .info-table th { @apply bg-slate-50 p-4 border-b border-slate-200 font-bold text-slate-500 text-center; }
+            .info-table { @apply w-full text-sm md:text-base border-t-4 border-brand-navy border-collapse; }
+            .info-table th { @apply bg-slate-50 p-4 border-b border-slate-200 font-bold text-slate-600 text-center; }
             .info-table td { @apply p-4 border-b border-slate-100 text-center font-medium text-slate-700; }
             .logo-box { @apply p-8 border border-slate-100 rounded-[24px] flex flex-col items-center justify-center bg-white shadow-sm hover:shadow-xl transition-all h-[130px] grayscale hover:grayscale-0 overflow-hidden; }
-            .level-pill { @apply px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest transition-all cursor-pointer; }
+            .level-pill { @apply px-7 py-2.5 rounded-full font-black text-[14px] uppercase tracking-wider transition-all cursor-pointer; }
             .sub-section-title { @apply text-2xl font-black mb-6 italic border-l-[10px] border-brand-blue pl-6 flex items-center gap-3; }
         }
     </style>
 </head>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+<body>
     <div id="layout" class="flex flex-col min-h-screen">
         <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -54,7 +55,7 @@
                     <div class="w-12 h-12 bg-brand-blue rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-2xl group-hover:rotate-[15deg] transition duration-500">Y</div>
                     <div class="flex flex-col">
                         <span class="text-xl font-black text-slate-900 leading-none tracking-tighter">동양미래대학교</span>
-                        <span class="text-[10px] font-black text-brand-blue tracking-[0.3em] uppercase mt-1">Semiconductor Bootcamp</span>
+                        <span class="text-[12px] font-black text-brand-blue tracking-[0.25em] uppercase mt-1">Semiconductor Bootcamp</span>
                     </div>
                 </a>
                 <nav class="hidden lg:flex items-center space-x-12">
@@ -74,11 +75,11 @@
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-16">
                 <div class="space-y-8">
                     <h3 class="font-black text-white text-3xl italic tracking-tighter uppercase italic">Dongyang Mirae Semiconductor</h3>
-                    <p class="text-sm font-medium leading-relaxed opacity-30 italic">08221 서울시 구로구 경인로 445 동양미래대학교 4호관 2층 203호<br/>TEL : 02-2610-1700 | FAX : 02-2688-5494</p>
+                    <p class="text-base font-medium leading-relaxed opacity-50 italic">08221 서울시 구로구 경인로 445 동양미래대학교 4호관 2층 203호<br/>TEL : 02-2610-1700 | FAX : 02-2688-5494</p>
                 </div>
                 <div class="flex flex-col items-center md:items-end justify-end space-y-6">
-                    <div class="flex gap-8 opacity-40 font-black text-xs uppercase tracking-widest hover:text-white transition cursor-pointer">개인정보처리방침</div>
-                    <p class="text-[10px] font-black tracking-[0.5em] opacity-20 uppercase italic">© 2026 Dongyang Mirae Univ. All Rights Reserved.</p>
+                    <div class="flex gap-8 opacity-60 font-black text-sm uppercase tracking-widest hover:text-white transition cursor-pointer">개인정보처리방침</div>
+                    <p class="text-[12px] font-black tracking-[0.35em] opacity-40 uppercase italic">© 2026 Dongyang Mirae Univ. All Rights Reserved.</p>
                 </div>
             </div>
         </footer>
@@ -117,9 +118,9 @@
                     { id: 1, title: '현장 실무형 기술 교육 포트폴리오 양식', date: '2026-05-18', views: 420, author: '지원팀' }
                 ],
                 gallery: [
-                    { title: '반도체 클린룸 현장 실무 실습', img: './assets/gallery1.png' },
-                    { title: '제2회 마이크로디그리 인증 수여식', img: './assets/gallery2.png' },
-                    { title: '주요 협약기업 인사 초청 특강', img: './assets/gallery3.png' }
+                    { title: '반도체 클린룸 현장 실무 실습', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80' },
+                    { title: '제2회 마이크로디그리 인증 수여식', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80' },
+                    { title: '주요 협약기업 인사 초청 특강', img: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?auto=format&fit=crop&w=1200&q=80' }
                 ],
                 review: [
                     { id: 3, title: '비전공자에서 반도체 정규직 합격하기까지', date: '2026-06-16', views: 450, author: '이*훈' },
@@ -134,7 +135,85 @@
             }
         };
 
+        // 게시판 기본(seed) 데이터를 보존해 두고, 신규 글은 그 앞에 표시한다.
+        window.SEED_POSTS = JSON.parse(JSON.stringify(window.state.posts));
+
         const setTab = (k, v) => { window.state[k] = v; router(); };
+
+        // ===== 게시글 작성 모달 =====
+        function openPostModal(board) {
+            window.__pmBoard = board;
+            const fs = window.PostStore && window.PostStore.mode === 'firestore';
+            const note = fs ? 'Firebase Firestore에 저장되어 모든 사용자와 공유됩니다.' : '현재 브라우저에 임시 저장됩니다. Firebase 설정을 입력하면 전체 공유됩니다.';
+            document.getElementById('modal-root').innerHTML = `
+                <div class="fixed inset-0 z-[100] flex items-center justify-center p-6" onclick="if(event.target===this)closePostModal()">
+                    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closePostModal()"></div>
+                    <div class="relative bg-white w-full max-w-2xl rounded-[32px] shadow-2xl p-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-black italic tracking-tighter">게시글 작성</h3>
+                            <button onclick="closePostModal()" class="w-11 h-11 rounded-full bg-slate-100 text-slate-500 font-black text-lg hover:bg-slate-200 transition">✕</button>
+                        </div>
+                        <div class="space-y-5">
+                            <input id="pm-title" type="text" placeholder="제목을 입력하세요" class="w-full px-5 py-4 rounded-2xl border border-slate-200 text-base font-bold text-slate-800 focus:border-brand-blue focus:outline-none">
+                            <input id="pm-author" type="text" placeholder="작성자 (선택, 미입력 시 익명)" class="w-full px-5 py-4 rounded-2xl border border-slate-200 text-base font-bold text-slate-800 focus:border-brand-blue focus:outline-none">
+                            <textarea id="pm-content" rows="6" placeholder="내용을 입력하세요" class="w-full px-5 py-4 rounded-2xl border border-slate-200 text-base font-medium text-slate-800 focus:border-brand-blue focus:outline-none resize-none"></textarea>
+                        </div>
+                        <div class="flex gap-3 mt-8">
+                            <button onclick="closePostModal()" class="flex-1 py-4 rounded-full border-2 border-slate-200 font-black text-slate-500 hover:bg-slate-50 transition">취소</button>
+                            <button id="pm-submit" onclick="submitPost()" class="flex-1 btn-primary rounded-full">등록하기</button>
+                        </div>
+                        <p class="text-sm text-slate-400 mt-5 text-center font-medium">${note}</p>
+                    </div>
+                </div>`;
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => { const el = document.getElementById('pm-title'); if (el) el.focus(); }, 50);
+        }
+
+        function closePostModal() {
+            document.getElementById('modal-root').innerHTML = '';
+            document.body.style.overflow = '';
+        }
+
+        async function submitPost() {
+            const board = window.__pmBoard;
+            const title = (document.getElementById('pm-title').value || '').trim();
+            const author = (document.getElementById('pm-author').value || '').trim() || '익명';
+            const content = (document.getElementById('pm-content').value || '').trim();
+            if (!title) { alert('제목을 입력해 주세요.'); return; }
+            const btn = document.getElementById('pm-submit');
+            const old = btn.innerText; btn.disabled = true; btn.innerText = '저장 중...';
+            try {
+                if (!window.PostStore) throw new Error('저장소가 준비되지 않았습니다.');
+                await window.PostStore.add(board, { title, author, content });
+                closePostModal();
+                router();
+            } catch (e) {
+                alert('저장 중 오류가 발생했습니다: ' + e.message);
+                btn.disabled = false; btn.innerText = old;
+            }
+        }
+
+        // ===== 게시글 보기 모달 =====
+        function openPostView(board, id) {
+            const item = (window.state.posts[board] || []).find(x => String(x.id) === String(id));
+            if (!item) return;
+            const body = (item.content && item.content.trim()) ? item.content.replace(/</g, '&lt;').replace(/\n/g, '<br>') : '등록된 본문 내용이 없습니다.';
+            document.getElementById('modal-root').innerHTML = `
+                <div class="fixed inset-0 z-[100] flex items-center justify-center p-6" onclick="if(event.target===this)closePostModal()">
+                    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closePostModal()"></div>
+                    <div class="relative bg-white w-full max-w-2xl rounded-[32px] shadow-2xl p-10 max-h-[85vh] overflow-y-auto">
+                        <div class="flex items-start justify-between mb-6 gap-4">
+                            <h3 class="text-2xl font-black italic tracking-tighter leading-snug">${item.title}</h3>
+                            <button onclick="closePostModal()" class="shrink-0 w-11 h-11 rounded-full bg-slate-100 text-slate-500 font-black text-lg hover:bg-slate-200 transition">✕</button>
+                        </div>
+                        <div class="flex gap-6 text-sm font-bold text-slate-400 border-b border-slate-100 pb-6 mb-8">
+                            <span>작성자 ${item.author || '익명'}</span><span>등록일 ${item.date || '-'}</span><span>조회 ${item.views || 0}</span>
+                        </div>
+                        <p class="text-lg font-medium text-slate-600 leading-loose">${body}</p>
+                    </div>
+                </div>`;
+            document.body.style.overflow = 'hidden';
+        }
 
         const renderBanner = (title, sub) => `
             <section class="relative h-[250px] bg-brand-blue overflow-hidden flex items-center justify-center text-center">
@@ -182,14 +261,14 @@
                 const list = [{n:'동양미래대학교',l:'https://www.dongyang.ac.kr/sites/dmu/images/common/logo.png'},{n:'교육부',l:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Ministry_of_Education_%28South_Korea%29_logo.svg/512px-Ministry_of_Education_%28South_Korea%29_logo.svg.png'},{n:'KIAT',l:'https://www.kiat.or.kr/content/images/common/logo.png'},{n:'산업단지공단',l:''},{n:'ETRI',l:'https://www.etri.re.kr/assets/images/common/logo.png'}];
                 content = `<div class="max-w-6xl mx-auto py-24 animate-in fade-in"><h3 class="text-3xl font-black mb-16 italic border-l-8 border-brand-blue pl-4">주요 거버넌스 및 협력 기관</h3><div class="grid grid-cols-2 md:grid-cols-5 gap-8">${list.map(a => `<div class="logo-box">${a.l ? `<img src="${a.l}" class="max-h-14 w-auto object-contain" onerror="handleImgError(this, '${a.n}')">` : `<span class="font-black text-brand-navy text-[10px] uppercase tracking-tighter text-center">${a.n}</span>`}</div>`).join('')}</div></div>`;
             } else if (t === 'greeting') {
-                content = `<div class="max-w-4xl mx-auto py-24 animate-in fade-in"><div class="glass-card shadow-2xl p-16"><div class="h-[550px] mb-12 rounded-[40px] overflow-hidden bg-slate-50 shadow-inner"><img src="./assets/greeting_hero.png" class="w-full h-full object-cover" onerror="handleImgError(this)"></div><h3 class="text-3xl font-black mb-8 italic tracking-tighter leading-tight italic">"미래를 설계하는 반도체 전문가,<br>우리가 함께 만들어갑니다."</h3><p class="text-xl font-bold text-slate-400 leading-relaxed italic opacity-80 mb-16 italic">반도체 산업의 핵심 인력을 양성하기 위해 최고의 설비와 현장형 교수진이 혁신적인 교육을 제공하겠습니다.</p><div class="text-right border-t border-slate-100 pt-12"><span class="text-3xl font-black italic uppercase tracking-tighter">사업단장 오석중</span></div></div></div>`;
+                content = `<div class="max-w-4xl mx-auto py-24 animate-in fade-in"><div class="glass-card shadow-2xl p-16"><div class="h-[550px] mb-12 rounded-[40px] overflow-hidden bg-slate-50 shadow-inner"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover" onerror="handleImgError(this)"></div><h3 class="text-3xl font-black mb-8 italic tracking-tighter leading-tight italic">"미래를 설계하는 반도체 전문가,<br>우리가 함께 만들어갑니다."</h3><p class="text-xl font-bold text-slate-400 leading-relaxed italic opacity-80 mb-16 italic">반도체 산업의 핵심 인력을 양성하기 위해 최고의 설비와 현장형 교수진이 혁신적인 교육을 제공하겠습니다.</p><div class="text-right border-t border-slate-100 pt-12"><span class="text-3xl font-black italic uppercase tracking-tighter">사업단장 오석중</span></div></div></div>`;
             } else if (t === 'org') {
                 content = `<div class="max-w-6xl mx-auto py-24 animate-in slide-in-from-bottom-6 duration-700 flex flex-col items-center"><div class="w-[350px] p-10 bg-brand-blue text-white rounded-[40px] shadow-3xl font-black text-3xl text-center uppercase italic italic">사업단장</div><div class="w-1.5 h-16 bg-slate-100"></div><div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mt-4">${['사업 기획 및 운영','실무 교육 고도화','대외 협력 및 행정'].map(s => `<div class="glass-card bg-slate-50/50 flex flex-col items-center"><h4 class="text-xl font-black text-brand-blue mb-4 italic">${s}</h4><p class="text-xs font-bold text-slate-400 text-center leading-relaxed">전략 수립, 프로그램 관리, 성과 지표 분석 및 학사 연계 총괄 지원</p></div>`).join('')}</div></div>`;
             } else if (t === 'depts') {
                 const d = [{n:'로봇소프트웨어공학과',l:'https://www.dongyang.ac.kr/dmu/4495/subview.do',r:'4호관 206호'},{n:'자동화공학과',l:'https://www.dongyang.ac.kr/dmu/4480/subview.do',r:'4호관 208호'},{n:'반도체전자공학과',l:'https://www.dongyang.ac.kr/dmu/4523/subview.do',r:'3호관 409호'}];
                 content = `<div class="max-w-7xl mx-auto py-24 grid grid-cols-1 md:grid-cols-3 gap-12">${d.map(obj => `<div class="glass-card text-center flex flex-col items-center group"><div class="w-20 h-20 bg-blue-50 text-brand-blue rounded-[32px] flex items-center justify-center mb-12 font-black text-4xl italic shadow-inner group-hover:bg-brand-blue group-hover:text-white transition duration-500 italic italic">#</div><h4 class="text-2xl font-black mb-4 italic tracking-tighter group-hover:text-brand-blue transition italic">${obj.n}</h4><p class="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-12 italic">${obj.r}</p><div class="w-full"><a href="${obj.l}" target="_blank" class="btn-primary w-full py-5 text-lg uppercase italic font-black shadow-2xl">학과 포털</a></div></div>`).join('')}</div>`;
             } else if (t === 'map') {
-                content = `<div class="max-w-6xl mx-auto py-24 space-y-20 animate-in fade-in"><div class="glass-card p-0 h-[600px] border-slate-100 relative group"><div class="absolute inset-0 bg-slate-50 flex items-center justify-center font-black text-slate-100 text-[140px] opacity-10 uppercase tracking-widest italic select-none">CAMPUS</div></div><div class="glass-card bg-brand-navy p-16 flex flex-col lg:flex-row justify-between items-center shadow-3xl text-white border-none rounded-[60px]"><div class="space-y-4 text-center lg:text-left"><h4 class="text-4xl font-black italic tracking-tighter uppercase italic">오시는 길</h4><p class="text-xl font-bold opacity-30">서울시 구로구 경인로 445 동양미래대학교 4호관 203호</p></div><div class="flex gap-6 mt-12 lg:mt-0"><button class="px-14 py-5 bg-[#03c75a] rounded-full font-black text-xl active:scale-95 transition">NAVER 지도</button><button class="px-14 py-5 bg-[#fae100] text-slate-900 rounded-full font-black text-xl active:scale-95 transition">KAKAO 맵</button></div></div></div>`;
+                content = `<div class="max-w-6xl mx-auto py-24 space-y-20 animate-in fade-in"><div class="glass-card p-0 h-[600px] border-slate-100 relative group overflow-hidden"><iframe class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%EB%8F%99%EC%96%91%EB%AF%B8%EB%9E%98%EB%8C%80%ED%95%99%EA%B5%90&output=embed"></iframe></div><div class="glass-card bg-brand-navy p-16 flex flex-col lg:flex-row justify-between items-center shadow-3xl text-white border-none rounded-[60px]"><div class="space-y-4 text-center lg:text-left"><h4 class="text-4xl font-black italic tracking-tighter uppercase italic">오시는 길</h4><p class="text-xl font-bold opacity-30">서울시 구로구 경인로 445 동양미래대학교 4호관 203호</p></div><div class="flex gap-6 mt-12 lg:mt-0"><button class="px-14 py-5 bg-[#03c75a] rounded-full font-black text-xl active:scale-95 transition">NAVER 지도</button><button class="px-14 py-5 bg-[#fae100] text-slate-900 rounded-full font-black text-xl active:scale-95 transition">KAKAO 맵</button></div></div></div>`;
             }
 
             return `<div>${renderBanner('사업단 소개', '혁신 교육을 선도하는 동양미래 반도체 부트캠프')}<div class="max-w-7xl mx-auto px-6"><div class="flex bg-slate-50/50 backdrop-blur rounded-full overflow-hidden mt-10 mb-16 border border-slate-100 shadow-inner">${tabs.map(item => `<button onclick="setTab('aboutTab', '${item.id}')" class="tab-btn px-6 ${window.state.aboutTab === item.id ? 'tab-active' : ''}">${item.name}</button>`).join('')}</div><div id="about-content">${content}</div></div></div>`;
@@ -307,20 +386,83 @@
                 content = `<div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-20">${window.state.posts.gallery.map(g => `<div class="glass-card p-0 shadow-lg group"><div class="h-64 overflow-hidden bg-slate-50 flex items-center justify-center"><img src="${g.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="handleImgError(this)"></div><div class="p-8"><h4 class="text-xl font-black italic tracking-tighter">${g.title}</h4></div></div>`).join('')}</div>`;
             } else {
                 const list = window.state.posts[t] || [];
-                content = `<div class="py-20 animate-in fade-in"><table class="info-table"><thead><tr><th>No</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th></tr></thead><tbody>${list.length > 0 ? list.map(p => `<tr><td>${p.id}</td><td class="text-left font-black text-slate-900 group cursor-pointer hover:text-brand-blue py-6 px-10 transition"> ${p.title} </td><td>${p.author||'Admin'}</td><td>${p.views}</td><td>${p.date}</td></tr>`).join('') : `<tr><td colspan="5" class="py-40 text-slate-200 font-black italic tracking-widest uppercase">작성된 게시글이 없습니다.</td></tr>`}</tbody></table><div class="mt-12 flex justify-end"><button class="btn-primary rounded-full px-16 shadow-2xl">게시글 작성</button></div></div>`;
+                content = `<div class="py-20 animate-in fade-in"><table class="info-table"><thead><tr><th>No</th><th>제목</th><th>작성자</th><th>조회수</th><th>등록일</th></tr></thead><tbody>${list.length > 0 ? list.map((p, i) => `<tr onclick="openPostView('${t}', '${p.id}')" class="cursor-pointer hover:bg-slate-50 transition"><td>${list.length - i}</td><td class="text-left font-black text-slate-900 hover:text-brand-blue py-6 px-10 transition"> ${p.title} </td><td>${p.author||'Admin'}</td><td>${p.views}</td><td>${p.date}</td></tr>`).join('') : `<tr><td colspan="5" class="py-40 text-slate-200 font-black italic tracking-widest uppercase">작성된 게시글이 없습니다.</td></tr>`}</tbody></table><div class="mt-12 flex justify-end"><button onclick="openPostModal('${t}')" class="btn-primary rounded-full px-16 shadow-2xl">게시글 작성</button></div></div>`;
             }
             return `<div>${renderBanner('커뮤니티', '실시간 소통과 성과의 공유')}<div class="max-w-7xl mx-auto px-6 py-20"><div class="flex bg-slate-50 border border-slate-100 rounded-full overflow-hidden mb-10">${tabs.map(tab => `<button onclick="setTab('commTab', '${tab.id}')" class="tab-btn px-6 ${window.state.commTab === tab.id ? 'tab-active' : ''}">${tab.n}</button>`).join('')}</div><div>${content}</div></div></div>`;
+        }
+
+        function renderFacilities() {
+            const t = window.state.facilityTab;
+            const tabs = [{ id: 'env', name: '교육환경' }, { id: 'equip', name: '교육장비' }];
+            let content = '';
+
+            if (t === 'env') {
+                const rooms = [
+                    { n: '반도체 공정 실습실', d: '실제 산업 현장과 동일한 장비 구성으로 공정 전반을 직접 운용하며 실무 감각을 익히는 핵심 실습 공간입니다.', img: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80' },
+                    { n: '자동화·제어 실습실', d: 'PLC, 협동로봇, 시퀀스 제어 등 설비 자동화 실습을 위한 통합 제어 교육 환경을 갖추고 있습니다.', img: 'https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=1200&q=80' },
+                    { n: '회로 설계·측정 실험실', d: '집적회로 설계와 반도체 특성 측정·분석을 위한 정밀 계측 장비를 구비한 전문 실험 공간입니다.', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80' }
+                ];
+                content = `<div class="grid grid-cols-1 md:grid-cols-3 gap-10 py-20 animate-in fade-in">${rooms.map(r => `
+                    <div class="glass-card p-0 group">
+                        <div class="h-60 overflow-hidden bg-slate-50"><img src="${r.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="handleImgError(this)"></div>
+                        <div class="p-8"><h4 class="text-2xl font-black mb-4 italic tracking-tighter">${r.n}</h4><p class="text-base font-bold text-slate-500 leading-relaxed">${r.d}</p></div>
+                    </div>`).join('')}</div>`;
+            } else {
+                const equip = [
+                    ['반도체 공정 장비', '식각·증착·세정 등 핵심 공정 실습 장비', '공정·설비 운용'],
+                    ['PLC / 협동로봇 시스템', '미쓰비시 PLC, 협동로봇 오퍼레이션 장비', '설비 자동화·제어'],
+                    ['반도체 계측·분석 장비', '소자 특성 측정 및 공정 측정·분석 장비', '공정 측정·분석'],
+                    ['CAD / Solidworks 워크스테이션', '도면 이해 및 설비 기구 설계 실습 환경', '설비 설계'],
+                    ['반도체 위험물 관리 설비', '유틸리티·안전관리 및 유지보수 실습 설비', '설비 유지보수']
+                ];
+                content = `<div class="py-20 animate-in fade-in"><div class="glass-card p-10 md:p-16"><h4 class="sub-section-title mb-10">주요 교육 장비 현황</h4><table class="info-table"><thead><tr><th>장비 분류</th><th>구성 및 용도</th><th>연계 직무</th></tr></thead><tbody>${equip.map(row => `<tr><td class="font-black text-slate-900">${row[0]}</td><td class="text-left">${row[1]}</td><td class="font-bold text-brand-blue">${row[2]}</td></tr>`).join('')}</tbody></table></div></div>`;
+            }
+            return `<div>${renderBanner('교육 인프라', '최고의 실무 환경을 구축합니다.')}<div class="max-w-7xl mx-auto px-6 py-20"><div class="flex bg-slate-50 border border-slate-100 rounded-full overflow-hidden mb-10 shadow-inner">${tabs.map(item => `<button onclick="setTab('facilityTab', '${item.id}')" class="tab-btn px-8 ${window.state.facilityTab === item.id ? 'tab-active' : ''}">${item.name}</button>`).join('')}</div><div>${content}</div></div></div>`;
+        }
+
+        function renderCareers() {
+            const programs = [
+                { t: '1:1 취업 멘토링', d: '졸업생·현직자 멘토와 함께하는 맞춤형 진로 상담 및 경력 설계 프로그램' },
+                { t: '면접 심화 클리닉', d: '모의 면접과 피드백을 통한 직무 면접 대비 및 자기소개서 첨삭 지원' },
+                { t: '협약기업 채용 설명회', d: '참여기업 인사 담당자 초청 채용 설명회 및 현장 채용 연계' },
+                { t: '현장실습·견학', d: '반도체 산업 현장 견학과 동·하계 장기 현장실습을 통한 실무 경험 제공' }
+            ];
+            const partners = ['램리서치코리아', '한국미쓰비시전기', '이엑스솔루션', 'ETRI', '반도체 협약기업'];
+            const steps = [
+                ['01', '교육 이수', '마이크로디그리·몰입형 과정 수료 및 인증 취득'],
+                ['02', '역량 진단', '직무 적합도 분석 및 1:1 커리어 컨설팅'],
+                ['03', '채용 연계', '협약기업 추천 및 채용 설명회 매칭'],
+                ['04', '취업 성공', '입사 후 적응 지원 및 사후 멘토링']
+            ];
+            const content = `
+                <div class="max-w-7xl mx-auto px-6 py-20 space-y-28 animate-in fade-in">
+                    <div>
+                        <h3 class="sub-section-title mb-12">취업지원 프로그램</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">${programs.map(p => `
+                            <div class="glass-card flex flex-col gap-4"><h4 class="text-2xl font-black italic tracking-tighter text-brand-blue">${p.t}</h4><p class="text-lg font-bold text-slate-500 leading-relaxed">${p.d}</p></div>`).join('')}</div>
+                    </div>
+                    <div>
+                        <h3 class="sub-section-title mb-12">취업 지원 프로세스</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">${steps.map(s => `
+                            <div class="glass-card bg-slate-50/50 flex flex-col items-center text-center"><span class="text-5xl font-black italic text-brand-blue/30 mb-6">${s[0]}</span><h4 class="text-xl font-black mb-4 italic">${s[1]}</h4><p class="text-base font-bold text-slate-500 leading-relaxed">${s[2]}</p></div>`).join('')}</div>
+                    </div>
+                    <div>
+                        <h3 class="sub-section-title mb-12">주요 채용 협약기업</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">${partners.map(n => `<div class="logo-box"><span class="font-black text-brand-navy text-base text-center leading-tight">${n}</span></div>`).join('')}</div>
+                    </div>
+                </div>`;
+            return `<div>${renderBanner('취업지원', '성공적인 사회진출의 든든한 파트너')}${content}</div>`;
         }
 
         const router = () => {
             const h = window.location.hash.slice(1) || '/';
             const pageMap = {
-                '/': () => `<div class="animate-in fade-in h-[85vh] flex flex-col justify-center items-center text-center px-6"><h2 class="text-9xl font-black italic tracking-tighter mb-8 leading-none">THE <span class="text-brand-blue">SILICON</span> FRONTIER</h2><p class="text-slate-400 font-black tracking-[0.6em] uppercase text-xl mb-20 italic opacity-60">Dongyang Mirae Semiconductor Innovation</p><div class="flex flex-col md:flex-row gap-8"><a href="#/courses" class="btn-primary px-20 py-7 text-2xl">교육과정 둘러보기</a><a href="#/about" class="px-20 py-7 border-2 border-slate-200 rounded-full font-black text-slate-400 hover:bg-slate-50 transition">사업단 비전</a></div></div>`,
+                '/': () => `<div class="animate-in fade-in h-[85vh] flex flex-col justify-center items-center text-center px-6"><h2 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-8 leading-none">THE <span class="text-brand-blue">SILICON</span> FRONTIER</h2><p class="text-slate-500 font-black tracking-[0.4em] uppercase text-lg md:text-xl mb-20 italic opacity-70">Dongyang Mirae Semiconductor Innovation</p><div class="flex flex-col md:flex-row gap-8"><a href="#/courses" class="btn-primary px-20 py-7 text-2xl">교육과정 둘러보기</a><a href="#/about" class="px-20 py-7 border-2 border-slate-200 rounded-full font-black text-lg text-slate-500 hover:bg-slate-50 transition">사업단 비전</a></div></div>`,
                 '/about': renderAbout,
                 '/courses': renderCourses,
-                '/facilities': () => `<div>${renderBanner('교육 인프라','최고의 실무 환경을 구축합니다.')}</div>`,
+                '/facilities': renderFacilities,
                 '/community': renderCommunity,
-                '/careers': () => `<div>${renderBanner('취업지원','성공적인 사회진출의 든든한 파트너')}</div>`
+                '/careers': renderCareers
             };
             document.getElementById('app').innerHTML = (pageMap[h.split('?')[0]] || pageMap['/'])();
             document.querySelectorAll('.nav-link').forEach(l => {
@@ -330,7 +472,94 @@
             });
             window.scrollTo(0,0);
         };
+        window.router = router; // 모듈 스크립트(Firebase)에서 재렌더링 호출용
         window.addEventListener('hashchange', router); window.addEventListener('load', router);
+    </script>
+
+    <!-- 게시글 모달이 그려지는 영역 -->
+    <div id="modal-root"></div>
+
+    <!-- ===== Firebase 연동 (게시글 작성/조회) ===== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // ┌──────────────────────────────────────────────────────────────┐
+        // │  여기에 본인 Firebase 프로젝트 설정(firebaseConfig)을 붙여넣으세요.   │
+        // │  Firebase 콘솔 > 프로젝트 설정 > 일반 > 내 앱 > SDK 설정 및 구성     │
+        // └──────────────────────────────────────────────────────────────┘
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const BOARDS = ['notice', 'data', 'review', 'faq'];
+        const isConfigured = firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith('YOUR_');
+
+        let db = null;
+        if (isConfigured) {
+            try { db = getFirestore(initializeApp(firebaseConfig)); }
+            catch (e) { console.error('Firebase 초기화 실패:', e); }
+        }
+
+        const fmtDate = (ts) => {
+            try { const d = ts && ts.toDate ? ts.toDate() : new Date(); return d.toISOString().slice(0, 10); }
+            catch (_) { return new Date().toISOString().slice(0, 10); }
+        };
+
+        // 신규 글(live) + 기본(seed) 데이터를 합쳐 화면 상태에 반영하고 필요 시 재렌더링
+        const applyLive = (board, liveList) => {
+            const seed = (window.SEED_POSTS && window.SEED_POSTS[board]) || [];
+            window.state.posts[board] = liveList.concat(seed);
+            const hash = (window.location.hash.slice(1) || '/');
+            if (hash.startsWith('/community') && typeof window.router === 'function') window.router();
+        };
+
+        const PostStore = {
+            mode: db ? 'firestore' : 'local',
+            add: async (board, post) => {
+                if (db) {
+                    await addDoc(collection(db, 'posts'), {
+                        board, title: post.title, author: post.author, content: post.content || '',
+                        views: 0, createdAt: serverTimestamp()
+                    });
+                } else {
+                    const key = 'posts_' + board;
+                    const arr = JSON.parse(localStorage.getItem(key) || '[]');
+                    arr.unshift({
+                        id: 'local-' + Date.now(), title: post.title, author: post.author,
+                        content: post.content || '', views: 0, date: new Date().toISOString().slice(0, 10)
+                    });
+                    localStorage.setItem(key, JSON.stringify(arr));
+                    applyLive(board, arr);
+                }
+            }
+        };
+        window.PostStore = PostStore;
+
+        if (db) {
+            // Firestore 실시간 구독 (작성 즉시 모든 사용자 화면에 반영)
+            BOARDS.forEach(board => {
+                const q = query(collection(db, 'posts'), where('board', '==', board), orderBy('createdAt', 'desc'));
+                onSnapshot(q, snap => {
+                    const list = snap.docs.map(doc => {
+                        const x = doc.data();
+                        return { id: doc.id, title: x.title, author: x.author || '익명', views: x.views || 0, date: fmtDate(x.createdAt), content: x.content || '' };
+                    });
+                    applyLive(board, list);
+                }, err => console.error('Firestore 구독 오류:', err));
+            });
+        } else {
+            // 설정 전: localStorage에 저장된 글을 초기 표시
+            BOARDS.forEach(board => {
+                const arr = JSON.parse(localStorage.getItem('posts_' + board) || '[]');
+                if (arr.length) applyLive(board, arr);
+            });
+        }
     </script>
 </body>
 </html>

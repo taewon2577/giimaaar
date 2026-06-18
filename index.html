@@ -21,6 +21,10 @@
         }
     </script>
     <style type="text/tailwindcss">
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
         @layer base {
             body { @apply bg-white text-slate-800 font-sans antialiased; margin: 0; }
         }
@@ -41,7 +45,8 @@
         }
     </style>
 </head>
-<body class="selection:bg-brand-blue selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
     <div id="layout" class="flex flex-col min-h-screen">
         <header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
